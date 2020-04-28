@@ -17,19 +17,21 @@ class Osu(BaseCog):
     async def osu(self, ctx, username, mode="std"):
         """Shows osu! Standard user stats"""
 
-        apikey = await self.bot.get_shared_api_tokens("osu")
+        osu_shared_tokens = await self.bot.get_shared_api_tokens("osu")
 
-        if apikey is None or apikey == "":
-            await ctx.send("You need to set an api key to use the osu! api, please use [p]osukey")
+        if "api_key" not in osu_shared_tokens:
+            await ctx.send("You need to set an api key to use the osu! api.")
             return
+        
+        api_key = osu_shared_tokens["api_key"]
 
         # Queries api to get osu profile
-        headers = {"content-type": "application/json", "user-key": apikey}
+        headers = {"content-type": "application/json", "user-key": api_key}
 
         mode_id = OSU_MODES[mode]
 
         async with aiohttp.ClientSession() as session:
-            async with session.post(f"https://osu.ppy.sh/api/get_user?k={apikey}&u={username}&m={mode_id}", headers=headers) as response:
+            async with session.post(f"https://osu.ppy.sh/api/get_user?k={api_key}&u={username}&m={mode_id}", headers=headers) as response:
                 osu = await response.json()
 
         if osu:
