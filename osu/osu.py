@@ -15,7 +15,7 @@ class Osu(BaseCog):
 
     @commands.command()
     async def osu(self, ctx, username, mode="std"):
-        """Shows an osu! user"""
+        """Shows osu! Standard user stats"""
 
         apikey = await self.bot.get_shared_api_tokens("osu")
 
@@ -54,12 +54,15 @@ class Osu(BaseCog):
 
     @commands.command()
     async def taiko(self, ctx, username, mode="taiko"):
+        """Shows osu! Taiko user stats"""
         await self.osu(ctx, username, mode=mode)
 
     @commands.command()
     async def ctb(self, ctx, username, mode="ctb"):
+        """Shows osu! Catch The Beat user stats"""
         await self.osu(ctx, username, mode=mode)
 
     @commands.command()
     async def mania(self, ctx, username, mode="mania"):
+        """Shows osu! Mania user stats"""
         await self.osu(ctx, username, mode=mode)
