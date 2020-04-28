@@ -1,0 +1,9 @@
+{
+  "author" : ["qwertyquerty"],
+  "bot_version": [3,0,0],
+  "install_msg" : "Mania best gamemode tbh",
+  "short" : "Display user information from osu",
+  "description" : "Displays user information about osu users in a simple embed",
+  "tags" : ["osu"],
+  "hidden" : false
+}
