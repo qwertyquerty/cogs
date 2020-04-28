@@ -1,5 +1,5 @@
 import discord
-from redbot.core import commands, Config, checks
+from redbot.core import commands, checks
 import aiohttp
 from redbot.core.utils.menus import menu, commands, DEFAULT_CONTROLS
 
@@ -9,11 +9,6 @@ OSU_MODES = {"std":0, "taiko":1, "ctb":2, "mania":3}
 
 class Osu(BaseCog):
     """Show stats from osu! api"""
-
-    def __init__(self):
-        self.config = Config.get_conf(self, identifier=842364413)
-        default_global = {"apikey": ""}
-        self.config.register_global(**default_global)
 
     @commands.command()
     async def osu(self, ctx, username, mode="std"):
