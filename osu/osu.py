@@ -19,7 +19,7 @@ class Osu(BaseCog):
     async def osu(self, ctx, username, mode="std"):
         """Shows an osu! user"""
 
-        apikey = await self.config.apikey()
+        apikey = await self.bot.get_shared_api_tokens("osu")
 
         if apikey is None or apikey == "":
             await ctx.send("You need to set an api key to use the osu! api, please use [p]osukey")
@@ -65,15 +65,3 @@ class Osu(BaseCog):
     @commands.command()
     async def mania(self, ctx, username, mode="mania"):
         await self.osu(ctx, username, mode=mode)
-
-    @commands.command()
-    @checks.is_owner()
-    async def osukey(self, ctx, key):
-        """Set osu! api key"""
-
-        # Load config
-        config_boards = await self.config.apikey()
-
-        # Set new config
-        await self.config.apikey.set(key)
-        await ctx.send("The apikey has been added.")
